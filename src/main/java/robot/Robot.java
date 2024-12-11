@@ -19,6 +19,7 @@ import monologue.Logged;
 import monologue.Monologue;
 import org.littletonrobotics.urcl.URCL;
 import robot.Ports.OI;
+import robot.drive.Drive;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -34,7 +35,10 @@ public class Robot extends CommandRobot implements Logged {
   private final PowerDistribution pdh = new PowerDistribution();
 
   // SUBSYSTEMS
-
+  Drive drive = new Drive();
+  private void configureBindings() {
+    drive.setDefaultCommand(drive.drive(driver::getLeftY, driver::getRightY));
+  }
   // COMMANDS
 
   /** The robot contains subsystems, OI devices, and commands. */
